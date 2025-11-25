@@ -1,6 +1,29 @@
+---
+layout: default
+title: Home 
+nav_order: 1
+---
+
 # Comp-Arch-Study-Group
 
 A comprehensive, self-guided hub that walks from digital logic intuition to advanced system integration on FPGA platforms. Each numbered directory is a self-contained module with its own `README.md`, diagrams, and HDL snippets. Work through them sequentially to follow the layered progression of computer architecture design.
+
+## Roadmap (at a glance)
+
+```text
+comp-arch-study-group/
+├── 00_Overview/                 # Foundations and roadmap
+├── 01_Digital_Logic_Fundamentals/
+├── 02_Computer_Architecture_Basics/
+├── 03_RISC-V_Implementation/
+├── 04_Peripheral_Design/
+├── 05_Memory_Systems/
+├── 06_FPGA_Architecture/
+├── 07_System_Integration/
+├── 08_Hardware_Accelerators/
+├── 09_Advanced_Topics/
+└── 10_References_and_Resources/
+```
 
 ## How to Navigate
 

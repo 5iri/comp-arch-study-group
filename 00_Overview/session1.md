@@ -1,56 +1,83 @@
+---
+layout: default
+title: Session 1 – What is Computer Architecture?
+parent: "00 – Overview"
+nav_order: 2
+---
+
 # What is computer architecture?
 
-It is, in very simple terms, the structure of a computer system based on component parts.
+In very simple terms, computer architecture is the structure and behaviour of a computer system as seen through its major components and the rules that connect them. It sits between raw devices (wires, gates, memories) and full systems (CPUs, SoCs, boards, and software stacks).
 
 ## Layers of Abstraction
 
- 1. Microarchitecture (Implementation)
+We will keep returning to three main layers:
 
- This explains how the ISA is physically realised in hardware. It explains how different chips are optimized to the maximum (by using less wires and registers, to make it more energy efficient and cost effective). In simple terms, how gates are connected to do to make it work.
+1. **Microarchitecture (Implementation)**  
+   This explains how the ISA is physically realised in hardware. It covers how different chips are optimised (fewer wires and registers, better pipelines, smarter control) to meet performance, power, and area constraints. In simple terms: how gates are connected to make the ISA actually work.
 
-2. Instruction Set Architecture (ISA)
+2. **Instruction Set Architecture (ISA)**  
+   The ISA is the interface between hardware and software. It specifies:
+   - the set of instructions,
+   - the visible registers and data types, and
+   - the memory addressing modes and calling conventions.
 
-The ISA is the interface between hardware and software. It specifies:
- - The set of instructions
- - Data types and registers.
- - Memory addressing modes.
+   Examples include x86 (most PCs), ARM (common in mobile and embedded), and RISC‑V (an open ISA we will use in this repository).
 
- Some examples include, x86 (used in most PCs, introduced by Intel), ARM (common in mobile devices), RISC-V (common open source ISA).
+3. **System Architecture**  
+   This layer specifies the full computer: CPU + memory + interconnect + I/O. It decides how many cores exist, how caches and memories are arranged, what buses connect peripherals, and how the platform appears to an operating system.
 
-
- 3. System Architecture
-
- This specifies the full computer -> CPU + RAM + I/O etc.
 ---
 
- > You design from the bottom up, but program from the top down.
+> You design from the bottom up, but you program from the top down.
 
-You start with physics, think about constraint to make the physical chip to build one, but when you program the abstraction goes the other way about.
+When designing, you start from physics and devices, then build up to gates, datapaths, and ISAs. When programming, you start from the ISA and system view, and only occasionally think about the microarchitecture below.
 
+A useful mental model is a game engine:
 
-Think of it like layers in a game engine:
+- **Logic** is the physics engine (the rules of reality).  
+- **Microarchitecture** is the mechanics (how motion and interactions are actually implemented).  
+- **ISA** is the gameplay API that scripts use.  
+- **System** is the whole game world and its resources.
 
-- Logic is the physics engine (rules of reality),
+## Why FPGAs are ideal for architectural exploration
 
-- Microarchitecture is the mechanics (how motion happens),
+Field‑Programmable Gate Arrays (FPGAs) are reconfigurable chips that allow us to implement and test real hardware without fabricating silicon. We describe hardware in HDL, synthesize it, and the FPGA fabric behaves like the designed circuit.
 
-- ISA is the API the player uses,
+For this repository, that means:
 
-- System is the whole game world.
+- we can prototype and iterate on custom CPU cores and accelerators,
+- we can experiment with different microarchitectures under the same ISA, and  
+- we can observe real timing and resource usage rather than just simulate on paper.
 
-> FPGAs are perfect for architectural exploration
+Because the fabric is reprogrammable, we can modify and re‑synthesise our logic quickly, which is perfect for learning and for architectural “what‑if” experiments.
 
-Field-programmable Gate Arrays (FPGAs) are reconfigurable chips that allow us to implement and test the real hardware without fabricating silicon.
+## CPU vs Accelerator vs Peripheral
 
-This is perfect for prototyping and experimenting custom CPU designs, Accelerators, because you can modify and re-synthesize your logic instantly.
-
-### CPU vs Accelerator vs Peripheral
+At the system level, it is useful to distinguish three roles you will see throughout the modules:
 
 | Component                         | Role                                                                                 | Typical Function                      |
 | --------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------- |
 | **CPU (Central Processing Unit)** | General-purpose executor. Executes instructions sequentially or in limited parallel. | Arithmetic, control, memory access    |
-| **Accelerator**                   | Specialized compute unit for one type of workload.                                   | AI, DSP, image processing, encryption |
+| **Accelerator**                   | Specialised compute unit for one type of workload.                                   | AI, DSP, image processing, encryption |
 | **Peripheral**                    | External interface for I/O or timing.                                                | UART, SPI, GPIO, Timer, AXI bridges   |
 
+Later modules will show how these are interconnected on a bus, how the CPU controls accelerators via memory‑mapped registers, and how peripherals expose clean interfaces to software.
 
-if you don't understand don't worry, further sessions will help you understand all of them.
+## Project roadmap for this repository
+
+The rest of the repository is organised to take you from this conceptual view down into implementation details and back up into full systems:
+
+- **00 – Overview** (this module) introduces the architectural layers and the overall journey.  
+- **01 – Digital Logic Fundamentals** builds the combinational and sequential blocks you need to implement datapaths and control.  
+- **02 – Computer Architecture Basics** shows how datapath and control come together into a simple processor.  
+- **03 – RISC‑V Implementation** guides you through a custom RV32 core, from ISA decoding to pipeline organisation.  
+- **04 – Peripheral Design** adds UARTs, timers, GPIO, and bus logic so the core can talk to the outside world.  
+- **05 – Memory Systems** introduces caches and memory hierarchy concepts that affect performance.  
+- **06 – FPGA Architecture** explains what is actually inside the FPGA that realises your designs.  
+- **07 – System Integration** turns individual blocks into a small SoC on an FPGA board.  
+- **08 – Hardware Accelerators** explores specialised compute units coupled to your core.  
+- **09 – Advanced Topics** touches on out‑of‑order ideas, coherence, and security.  
+- **10 – References and Resources** is a curated reading and viewing list.
+
+As you move through these modules, you will repeatedly connect back to the abstractions from this session: what parts belong to the ISA, what belongs to the microarchitecture, and how the system around the CPU completes the picture.

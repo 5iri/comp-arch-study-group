@@ -1,3 +1,10 @@
+---
+layout: default
+title: Introduction to Computer Architecture
+parent: "00 – Overview"
+nav_order: 1
+---
+
 # welcome!
 
 This is the absolute base introduction to computer architecture.
@@ -8,4 +15,4 @@ The foundations present here will move in higher difficulty across the modules p
 
 The basic prerequisites to this that we expect are basics of digital electronics, registers, wires, transistors (till CMOS at the least) etc.
 
-In this repository, we will build our own CPU core (and further advance topics will cover even more!), from HDL to Bitstream flow, get detailed toolchain understanding!
+In this repository, we will build our own CPU core (and further advanced topics will cover even more!), from HDL to Bitstream flow, and gain detailed toolchain understanding.

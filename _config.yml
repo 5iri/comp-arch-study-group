@@ -1,0 +1,17 @@
+title: Comp-Arch Study Group
+description: A layered journey from digital logic intuition to full computer systems on FPGAs.
+
+markdown: kramdown
+
+# Use the just-the-docs theme for documentation
+theme: just-the-docs
+
+# Keep plugin list empty to avoid GitHub-metadata etc. locally
+plugins: []
+
+search_enabled: true
+nav_external_links_new_tab: true
+
+# When deploying to GitHub Pages with a custom domain:
+url: "https://comparch.5iri.me"
+# baseurl: ""
