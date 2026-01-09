@@ -2,6 +2,9 @@ title: Comp-Arch Study Group
 description: A layered journey from digital logic intuition to full computer systems on FPGAs.
 
 markdown: kramdown
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
 
 # Use the just-the-docs theme via the installed gem
 theme: just-the-docs
