@@ -3,11 +3,10 @@ description: A layered journey from digital logic intuition to full computer sys
 
 markdown: kramdown
 
-# Use the just-the-docs theme for documentation (via remote_theme so GitHub Pages can fetch it)
-remote_theme: just-the-docs/just-the-docs
+# Use the just-the-docs theme via the installed gem
+theme: just-the-docs
 
-plugins:
-  - jekyll-remote-theme
+plugins: []
 
 search_enabled: true
 nav_external_links_new_tab: true
